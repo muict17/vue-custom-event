@@ -1,17 +1,29 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <Child v-on:toParent="callFromChild" />
+    {{ displayNumber }}
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
-
+import Child from "@/components/Child";
 export default {
   name: "app",
   components: {
-    HelloWorld
+    Child
+  },
+  data() {
+    return {
+      displayNumber: 0
+    };
+  },
+  methods: {
+    callFromChild: function(value) {
+      /* eslint-disable */
+      console.log("Value from child => ", value);
+      this.displayNumber = value;
+    }
   }
 };
 </script>
